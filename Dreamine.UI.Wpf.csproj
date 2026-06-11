@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0-windows</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<UseWPF>true</UseWPF>
+
+		<PackageId>Dreamine.UI.Wpf</PackageId>
+		<Version>1.0.0</Version>
+		<Authors>Dreamine Core Team</Authors>
+		<Company>Dreamine</Company>
+		<Description>WPF Behaviors, Converters, and Localization utilities for the Dreamine UI library.</Description>
+		<PackageTags>dreamine;wpf;ui;behaviors;converters;localization</PackageTags>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<RepositoryUrl>https://github.com/CodeMaru-Dreamine/Dreamine.UI.Wpf</RepositoryUrl>
+		<Title>Dreamine.UI.Wpf</Title>
+		<Copyright>© 2025 Dreamine Core Team. All rights reserved.</Copyright>
+		<PackageProjectUrl>https://github.com/CodeMaru-Dreamine/Dreamine.MVVM.FullKit</PackageProjectUrl>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.135" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\UI.Abstractions\Dreamine.UI.Abstractions.csproj" />
+	</ItemGroup>
+
+</Project>

@@ -15,12 +15,12 @@ public static class DreamineLocalization
 
     public static readonly DependencyProperty LanguageProperty =
         DependencyProperty.RegisterAttached(
-            "Language", typeof(eLanguage), typeof(DreamineLocalization),
-            new FrameworkPropertyMetadata(default(eLanguage),
+            "Language", typeof(Language), typeof(DreamineLocalization),
+            new FrameworkPropertyMetadata(default(Language),
                 FrameworkPropertyMetadataOptions.Inherits, OnLanguageChanged));
 
-    public static void SetLanguage(DependencyObject obj, eLanguage value)  => obj.SetValue(LanguageProperty, value);
-    public static eLanguage GetLanguage(DependencyObject obj)               => (eLanguage)obj.GetValue(LanguageProperty);
+    public static void SetLanguage(DependencyObject obj, Language value)  => obj.SetValue(LanguageProperty, value);
+    public static Language GetLanguage(DependencyObject obj)               => (Language)obj.GetValue(LanguageProperty);
 
     public static readonly DependencyProperty LocalizationSectionProperty =
         DependencyProperty.RegisterAttached(
@@ -48,11 +48,11 @@ public static class DreamineLocalization
 
     public static readonly DependencyProperty TextCaseProperty =
         DependencyProperty.RegisterAttached(
-            "TextCase", typeof(eTextcaseType), typeof(DreamineLocalization),
-            new PropertyMetadata(eTextcaseType.Default, OnTextCaseTypeChanged));
+            "TextCase", typeof(TextcaseType), typeof(DreamineLocalization),
+            new PropertyMetadata(TextcaseType.Default, OnTextCaseTypeChanged));
 
-    public static void SetTextCase(DependencyObject obj, eTextcaseType value) => obj.SetValue(TextCaseProperty, value);
-    public static eTextcaseType GetTextCase(DependencyObject obj)              => (eTextcaseType)obj.GetValue(TextCaseProperty);
+    public static void SetTextCase(DependencyObject obj, TextcaseType value) => obj.SetValue(TextCaseProperty, value);
+    public static TextcaseType GetTextCase(DependencyObject obj)              => (TextcaseType)obj.GetValue(TextCaseProperty);
 
     #endregion
 
@@ -129,7 +129,7 @@ public static class DreamineLocalization
         return args.Length > 0 ? string.Format(text, args) : text;
     }
 
-    private static string? TryFindLocalization(eLanguage lang, string key)
+    private static string? TryFindLocalization(Language lang, string key)
     {
         if (DreamineLocalizationManager.Languages.TryGetValue(lang, out var sections))
             foreach (var section in sections)
@@ -137,17 +137,17 @@ public static class DreamineLocalization
         return null;
     }
 
-    private static string ApplyTextCase(string text, eTextcaseType textCase) => textCase switch
+    private static string ApplyTextCase(string text, TextcaseType textCase) => textCase switch
     {
-        eTextcaseType.UpperCase     => text.ToUpper(),
-        eTextcaseType.LowerCase     => text.ToLower(),
-        eTextcaseType.TitleCase     => string.Join(" ", text.Split(' ').Select(w =>
+        TextcaseType.UpperCase     => text.ToUpper(),
+        TextcaseType.LowerCase     => text.ToLower(),
+        TextcaseType.TitleCase     => string.Join(" ", text.Split(' ').Select(w =>
                                            string.IsNullOrWhiteSpace(w) ? w :
                                            char.ToUpper(w[0], CultureInfo.CurrentCulture) +
                                            (w.Length > 1 ? w[1..].ToLower(CultureInfo.CurrentCulture) : ""))),
-        eTextcaseType.SentenceCase  => string.IsNullOrWhiteSpace(text) ? text :
+        TextcaseType.SentenceCase  => string.IsNullOrWhiteSpace(text) ? text :
                                        char.ToUpper(text[0], CultureInfo.CurrentCulture) + text[1..].ToLower(CultureInfo.CurrentCulture),
-        eTextcaseType.EmphasisCase  => string.IsNullOrWhiteSpace(text) ? text :
+        TextcaseType.EmphasisCase  => string.IsNullOrWhiteSpace(text) ? text :
                                        text.IndexOf(' ') is int i && i >= 0
                                            ? text[..i].ToUpperInvariant() + text[i..]
                                            : text.ToUpperInvariant(),

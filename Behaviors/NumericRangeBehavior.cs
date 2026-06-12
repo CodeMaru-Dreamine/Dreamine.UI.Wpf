@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
@@ -9,7 +9,7 @@ namespace Dreamine.UI.Wpf.Behaviors
 	/// <summary>
 	/// \brief 숫자 범위 위반 시 처리 모드.
 	/// </summary>
-	public enum eNumericRangeMode
+	public enum NumericRangeMode
 	{
 		/// <summary>\brief 범위 밖이면 자동 보정(Clamp) </summary>
 		Clamp,
@@ -51,9 +51,9 @@ namespace Dreamine.UI.Wpf.Behaviors
 		public static readonly DependencyProperty ModeProperty =
 			DependencyProperty.RegisterAttached(
 				"Mode",
-				typeof(eNumericRangeMode),
+				typeof(NumericRangeMode),
 				typeof(NumericRangeBehavior),
-				new PropertyMetadata(eNumericRangeMode.Clamp));
+				new PropertyMetadata(NumericRangeMode.Clamp));
 
 		/// <summary>\brief 마지막 유효 텍스트 내부 저장용(DP) </summary>
 		private static readonly DependencyProperty LastValidTextProperty =
@@ -79,9 +79,9 @@ namespace Dreamine.UI.Wpf.Behaviors
 		public static double? GetMax(DependencyObject d) => (double?)d.GetValue(MaxProperty);
 
 		/// <summary>\brief Getter/Setter </summary>
-		public static void SetMode(DependencyObject d, eNumericRangeMode value) => d.SetValue(ModeProperty, value);
+		public static void SetMode(DependencyObject d, NumericRangeMode value) => d.SetValue(ModeProperty, value);
 		/// <summary>\brief Getter/Setter </summary>
-		public static eNumericRangeMode GetMode(DependencyObject d) => (eNumericRangeMode)d.GetValue(ModeProperty);
+		public static NumericRangeMode GetMode(DependencyObject d) => (NumericRangeMode)d.GetValue(ModeProperty);
 
 		private static void SetLastValidText(DependencyObject d, string value) => d.SetValue(LastValidTextProperty, value);
 		private static string GetLastValidText(DependencyObject d) => (string)d.GetValue(LastValidTextProperty);
@@ -129,7 +129,7 @@ namespace Dreamine.UI.Wpf.Behaviors
 				var future = GetFutureText(tb, pasteText);
 				if (!TryValidate(tb, future, out var corrected))
 				{
-					if (GetMode(tb) == eNumericRangeMode.Reject)
+					if (GetMode(tb) == NumericRangeMode.Reject)
 					{
 						e.CancelCommand();
 						tb.Text = GetLastValidText(tb) ?? string.Empty;
@@ -151,7 +151,7 @@ namespace Dreamine.UI.Wpf.Behaviors
 		{
 			if (sender is not TextBox tb) return;
 
-			if (GetMode(tb) == eNumericRangeMode.Clamp)
+			if (GetMode(tb) == NumericRangeMode.Clamp)
 			{
 				if (!TryValidate(tb, tb.Text, out var corrected))
 				{
@@ -177,7 +177,7 @@ namespace Dreamine.UI.Wpf.Behaviors
 			var mode = GetMode(tb);
 			if (!TryValidate(tb, tb.Text, out var corrected))
 			{
-				tb.Text = (mode == eNumericRangeMode.Reject)
+				tb.Text = (mode == NumericRangeMode.Reject)
 					? (GetLastValidText(tb) ?? corrected)
 					: corrected;
 			}

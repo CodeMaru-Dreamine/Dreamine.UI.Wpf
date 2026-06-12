@@ -1,6 +1,6 @@
 namespace Dreamine.UI.Wpf.Controls;
 
-public enum eLedCorner
+public enum LedCorner
 {
     TopLeft,
     TopRight,

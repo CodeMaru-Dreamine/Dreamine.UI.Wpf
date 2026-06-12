@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Globalization;
 using System.Windows.Data;
 using Dreamine.UI.Wpf.Controls;
@@ -10,7 +10,7 @@ namespace Dreamine.UI.Wpf.Converters
 	/// @details
 	/// ConverterParameter: "OuterLeft" | "OuterTop" | "InnerLeft" | "InnerTop"
 	/// MultiBinding 순서:
-	/// 0: eLedCorner (Corner)
+	/// 0: LedCorner (Corner)
 	/// 1: double (ActualWidth 또는 ActualHeight) - Parameter에 따라 의미 달라짐
 	/// 2: double (Diameter)
 	/// 3: double (EdgeOffset)
@@ -24,17 +24,17 @@ namespace Dreamine.UI.Wpf.Converters
 			string mode = (parameter as string) ?? "OuterLeft";
 			if (values == null || values.Length < 4) return 0.0;
 
-			var corner = values[0] is eLedCorner c ? c : eLedCorner.TopRight;
+			var corner = values[0] is LedCorner c ? c : LedCorner.TopRight;
 			double extent = ToDouble(values[1]); // width or height
 			double diameter = ToDouble(values[2]);
 			double edgeOffset = ToDouble(values[3]);
 			double innerScale = (values.Length > 4) ? ToDouble(values[4]) : 0.45;
 
-			double outerLeft = (corner == eLedCorner.TopRight || corner == eLedCorner.BottomRight)
+			double outerLeft = (corner == LedCorner.TopRight || corner == LedCorner.BottomRight)
 				? extent - diameter - edgeOffset
 				: edgeOffset;
 
-			double outerTop = (corner == eLedCorner.BottomLeft || corner == eLedCorner.BottomRight)
+			double outerTop = (corner == LedCorner.BottomLeft || corner == LedCorner.BottomRight)
 				? extent - diameter - edgeOffset
 				: edgeOffset;
 

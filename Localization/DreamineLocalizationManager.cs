@@ -5,7 +5,7 @@ using System.Windows;
 namespace Dreamine.UI.Wpf.Localization;
 
 /// <summary>지원 언어.</summary>
-public enum eLanguage
+public enum Language
 {
     English,
     Korean,
@@ -14,7 +14,7 @@ public enum eLanguage
 }
 
 /// <summary>텍스트 케이스 변환 방식.</summary>
-public enum eTextcaseType
+public enum TextcaseType
 {
     Default,
     SentenceCase,
@@ -30,17 +30,17 @@ public enum eTextcaseType
 /// </summary>
 public static class DreamineLocalizationManager
 {
-    private static readonly HashSet<eLanguage> _valid = Enum.GetValues<eLanguage>().ToHashSet();
+    private static readonly HashSet<Language> _valid = Enum.GetValues<Language>().ToHashSet();
 
-    private static readonly Dictionary<eLanguage, Dictionary<string, Dictionary<string, string>>> _langDict = new();
+    private static readonly Dictionary<Language, Dictionary<string, Dictionary<string, string>>> _langDict = new();
 
-    private static eLanguage _currentLanguage = eLanguage.Korean;
-    private static eLanguage _oldLanguage     = eLanguage.Korean;
+    private static Language _currentLanguage = Language.Korean;
+    private static Language _oldLanguage     = Language.Korean;
 
-    public static eLanguage OldLanguage => _oldLanguage;
+    public static Language OldLanguage => _oldLanguage;
 
     /// <summary>현재 선택된 언어. 변경 시 LanguageChanged 이벤트 발생.</summary>
-    public static eLanguage CurrentLanguage
+    public static Language CurrentLanguage
     {
         get => _currentLanguage;
         set
@@ -58,7 +58,7 @@ public static class DreamineLocalizationManager
     public static event EventHandler? LanguageChanged;
 
     /// <summary>로드된 언어 딕셔너리. [Language][Section][Key] = LocalizedValue</summary>
-    public static IReadOnlyDictionary<eLanguage, IReadOnlyDictionary<string, IReadOnlyDictionary<string, string>>> Languages
+    public static IReadOnlyDictionary<Language, IReadOnlyDictionary<string, IReadOnlyDictionary<string, string>>> Languages
         => _langDict.ToDictionary(
             l => l.Key,
             l => (IReadOnlyDictionary<string, IReadOnlyDictionary<string, string>>)
@@ -71,8 +71,8 @@ public static class DreamineLocalizationManager
     /// <param name="language">초기 언어.</param>
     /// <param name="data">언어별 [Section][Key]=Value 딕셔너리.</param>
     public static void SetLanguageData(
-        eLanguage language,
-        Dictionary<eLanguage, Dictionary<string, Dictionary<string, string>>> data)
+        Language language,
+        Dictionary<Language, Dictionary<string, Dictionary<string, string>>> data)
     {
         _langDict.Clear();
         foreach (var kv in data)
@@ -86,13 +86,13 @@ public static class DreamineLocalizationManager
     /// </summary>
     public static void Load(
         Func<string, Dictionary<string, Dictionary<string, string>>> loadFn,
-        eLanguage language = eLanguage.English,
+        Language language = Language.English,
         string? basePath = null)
     {
         CurrentLanguage = language;
         string dir = basePath ?? Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Languages");
 
-        foreach (eLanguage lang in Enum.GetValues<eLanguage>())
+        foreach (Language lang in Enum.GetValues<Language>())
         {
             string langName = lang.ToString();
             string filePath = Path.Combine(dir, $"Ui{langName}.INI");
@@ -110,7 +110,7 @@ public static class DreamineLocalizationManager
         => Get(CurrentLanguage, section, key);
 
     /// <summary>지정 언어에서 섹션/키로 번역 문자열을 반환.</summary>
-    public static string Get(eLanguage lang, string section, string key)
+    public static string Get(Language lang, string section, string key)
     {
         if (_langDict.TryGetValue(lang, out var sectionDict) &&
             sectionDict.TryGetValue(section, out var keyDict) &&
@@ -121,7 +121,7 @@ public static class DreamineLocalizationManager
     }
 
     /// <summary>값으로 키를 역조회.</summary>
-    public static string? GetKeyFromValue(eLanguage lang, string section, string value)
+    public static string? GetKeyFromValue(Language lang, string section, string value)
     {
         if (_langDict.TryGetValue(lang, out var sectionDict) &&
             sectionDict.TryGetValue(section, out var keyDict))
@@ -153,7 +153,7 @@ public class StaticLocalizationProxy : DependencyObject, INotifyPropertyChanged
         DreamineLocalizationManager.LanguageChanged += (_, _) => OnPropertyChanged(nameof(CurrentLanguage));
     }
 
-    public eLanguage CurrentLanguage
+    public Language CurrentLanguage
     {
         get => DreamineLocalizationManager.CurrentLanguage;
         set => DreamineLocalizationManager.CurrentLanguage = value;

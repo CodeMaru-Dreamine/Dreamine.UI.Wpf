@@ -11,7 +11,7 @@ public class ValueUnitCombinationConverter : IMultiValueConverter
         var value = values[0]?.ToString() ?? string.Empty;
         var unit = values[1]?.ToString();
 
-        var label = VsLocalization.Get(value) is { } multiLanguageValue && !string.IsNullOrEmpty(multiLanguageValue) ? multiLanguageValue : value;
+        var label = value;
 
         if (string.IsNullOrEmpty(unit))
             return label;

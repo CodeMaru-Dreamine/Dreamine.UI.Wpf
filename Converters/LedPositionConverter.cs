@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.Windows.Data;
-using VsLibrary.UiComponent.VsControls;
+using Dreamine.UI.Wpf.Controls;
 
 namespace Dreamine.UI.Wpf.Converters
 {

@@ -1,6 +1,5 @@
 ﻿using System.Globalization;
 using System.Windows.Data;
-using VsLibrary.Base.Helper.Utils;
 
 namespace Dreamine.UI.Wpf.Converters;
 
@@ -12,7 +11,10 @@ public class BoolToIntDynamicConverter : IValueConverter
         if (value == null || parameter == null)
             return 0;
 
-        bool bValue = DataConverter.ToBoolean(value);
+        bool bValue = value is bool b ? b
+            : value is string s ? (s == "1" || string.Equals(s, "true", StringComparison.OrdinalIgnoreCase))
+            : value is int i ? (i != 0)
+            : false;
 
         string[] strParam = parameter.ToString()!.Split(",");
 

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -9,7 +9,7 @@ using System.Windows.Data;
 namespace Dreamine.UI.Wpf.Converters
 {
 	/// <summary>
-	/// DateTime <-> TimeSpan 변환기
+	/// DateTime to/from TimeSpan converter.
 	/// DatePicker와 TimeSpinner를 동시에 ExpiredDate에 바인딩하기 위해 사용.
 	/// </summary>
 	public class DateTimeToTimeSpanConverter : IValueConverter

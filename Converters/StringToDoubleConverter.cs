@@ -1,4 +1,4 @@
-﻿using System.Globalization;
+using System.Globalization;
 using System.Windows.Data;
 
 namespace Dreamine.UI.Wpf.Converters
@@ -10,7 +10,7 @@ namespace Dreamine.UI.Wpf.Converters
 	/// - <b>ConvertBack:</b> double → string (supports custom formatting)<br/>
 	/// - By default, parsing uses <see cref="CultureInfo.InvariantCulture"/>. 
 	///   Set <see cref="UseInvariantCulture"/> to false to use the binding's provided culture.
-	/// </details>
+	/// </summary>
 	public sealed class StringToDoubleConverter : IValueConverter
 	{
 		/// <summary>

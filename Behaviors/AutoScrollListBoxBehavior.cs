@@ -1,4 +1,4 @@
-﻿using System.Collections.Specialized;
+using System.Collections.Specialized;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -7,11 +7,10 @@ namespace Dreamine.UI.Wpf.Behaviors;
 /// <summary>
 /// \file AutoScrollListBoxBehavior.cs
 /// \brief Attached behavior that keeps a ListBox scrolled to the latest item.
-/// \details
+/// Details:
 ///  - When enabled, it listens to ItemsSource changes and automatically scrolls to the last item.
 ///  - Works with ObservableCollection via INotifyCollectionChanged.
 ///  - This behavior is UI-only and does not require code-behind usage.
-/// </details>
 /// </summary>
 public static class AutoScrollListBoxBehavior
 {
@@ -43,9 +42,8 @@ public static class AutoScrollListBoxBehavior
 
 	/// <summary>
 	/// \brief Attached property for holding the subscription handler reference.
-	/// \details
+	/// Details:
 	///  - Used to properly detach events when behavior is disabled.
-	/// </details>
 	/// </summary>
 	private static readonly DependencyProperty SubscriptionProperty =
 		DependencyProperty.RegisterAttached(

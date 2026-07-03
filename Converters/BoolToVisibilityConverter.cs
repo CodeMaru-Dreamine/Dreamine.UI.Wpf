@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Globalization;
 using System.Linq;
 using System.Windows;
@@ -8,7 +8,7 @@ namespace Dreamine.UI.Wpf.Converters
 {
 	/// <summary>
 	/// \brief Converts between <see cref="bool"/> and <see cref="Visibility"/> with optional inversion and Hidden support.
-	/// \details
+	/// Details:
 	/// This converter is designed to be compatible with common "BoolToVisibilityConverter" variants used in projects.
 	/// It supports:
 	/// - Inverse conversion (true->Collapsed/Hidden, false->Visible)
@@ -26,17 +26,15 @@ namespace Dreamine.UI.Wpf.Converters
 	///    Visibility="{Binding IsOn, Converter={StaticResource BoolToVis}, ConverterParameter=Hidden}"
 	///    Visibility="{Binding IsOn, Converter={StaticResource BoolToVis}, ConverterParameter=Inverse,Hidden}"
 	///    </code>
-	/// </details>
 	/// </summary>
 	public sealed class BoolToVisibilityConverter : IValueConverter
 	{
 		/// <summary>
 		/// \brief When true, inverts the meaning of the boolean value.
-		/// \details
+		/// Details:
 		/// If <see cref="Inverse"/> is true:
 		/// - true  -> falseVisibility (Collapsed/Hidden)
 		/// - false -> Visible
-		/// </details>
 		/// </summary>
 		public bool Inverse { get; set; } = false;
 
@@ -75,7 +73,7 @@ namespace Dreamine.UI.Wpf.Converters
 
 		/// <summary>
 		/// \brief Converts <see cref="Visibility"/> back to a boolean value.
-		/// \details
+		/// Details:
 		/// Visible -> true, otherwise false. Applies <see cref="Inverse"/> and optional parameter override.
 		/// \param value The value from the target (expected: <see cref="Visibility"/>).
 		/// \param targetType The target type (expected: bool).
@@ -97,12 +95,12 @@ namespace Dreamine.UI.Wpf.Converters
 
 		/// <summary>
 		/// \brief Safely converts various input types to bool.
-		/// \details
+		/// Details:
 		/// Supports: bool, bool?, string ("true"/"false"), numeric (0/1), null -> false.
 		/// This implementation avoids nullable pattern matching issues (CS8116).
-		/// </details>
 		/// <param name="value">Input value.</param>
 		/// <returns>Normalized boolean value.</returns>
+		/// </summary>
 		private static bool ToBoolSafe(object? value)
 		{
 			if (value == null)
@@ -146,7 +144,7 @@ namespace Dreamine.UI.Wpf.Converters
 
 		/// <summary>
 		/// \brief Applies converter options from the ConverterParameter.
-		/// \details
+		/// Details:
 		/// Supported parameter forms:
 		/// - string: "Inverse", "Hidden", "UseHidden", "Inverse,Hidden"
 		/// - bool: treated as Inverse override

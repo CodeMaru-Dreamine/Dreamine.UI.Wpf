@@ -4,20 +4,62 @@ using System.Windows.Data;
 namespace Dreamine.UI.Wpf.Converters
 {
 	/// <summary>
-	/// Converts a boolean value to an icon name string for UI representation.
-	/// Useful for dynamic icon switching in data-bound controls (e.g., check status).
+	/// \if KO
+	/// <para>부울 값을 선택 또는 미선택 상태의 아이콘 이름으로 변환합니다.</para>
+	/// \endif
+	/// \if EN
+	/// <para>Converts a Boolean value to an icon name representing selected or unselected state.</para>
+	/// \endif
 	/// </summary>
 	public class BooleanToIconConverter : IValueConverter
 	{
 		/// <summary>
-		/// Converts a boolean value to an icon name string.
+		/// \if KO
+		/// <para>부울 입력을 아이콘 이름으로 변환합니다.</para>
+		/// \endif
+		/// \if EN
+		/// <para>Converts a Boolean input to an icon name.</para>
+		/// \endif
 		/// </summary>
-		/// <Param name="value">The source boolean value from the binding.</Param>
-		/// <Param name="targetType">The target type of the binding (expected to be string).</Param>
-		/// <Param name="parameter">Optional parameter (unused).</Param>
-		/// <Param name="culture">The culture info for the conversion.</Param>
+		/// <param name="value">
+		/// \if KO
+		/// <para>원본 값입니다.</para>
+		/// \endif
+		/// \if EN
+		/// <para>The source value.</para>
+		/// \endif
+		/// </param>
+		/// <param name="targetType">
+		/// \if KO
+		/// <para>대상 형식입니다.</para>
+		/// \endif
+		/// \if EN
+		/// <para>The target type.</para>
+		/// \endif
+		/// </param>
+		/// <param name="parameter">
+		/// \if KO
+		/// <para>사용하지 않는 매개변수입니다.</para>
+		/// \endif
+		/// \if EN
+		/// <para>An unused parameter.</para>
+		/// \endif
+		/// </param>
+		/// <param name="culture">
+		/// \if KO
+		/// <para>사용하지 않는 문화권입니다.</para>
+		/// \endif
+		/// \if EN
+		/// <para>An unused culture.</para>
+		/// \endif
+		/// </param>
 		/// <returns>
-		/// "CheckCircle" if true; "Circle" if false or value is null/invalid.
+		/// \if KO
+		/// <para>참이면 "CheckCircle", 아니면 "Circle"입니다.</para>
+		/// \endif
+		/// \if EN
+		/// <para>"CheckCircle" for true; otherwise, "Circle".</para>
+		/// \endif
 		/// </returns>
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
@@ -29,14 +71,60 @@ namespace Dreamine.UI.Wpf.Converters
 		}
 
 		/// <summary>
-		/// ConvertBack is not implemented for this converter.
+		/// \if KO
+		/// <para>아이콘 이름의 역변환은 구현되어 있지 않습니다.</para>
+		/// \endif
+		/// \if EN
+		/// <para>Reverse conversion of an icon name is not implemented.</para>
+		/// \endif
 		/// </summary>
-		/// <Param name="value">The target value to convert back (unused).</Param>
-		/// <Param name="targetType">The type to convert to (unused).</Param>
-		/// <Param name="parameter">Optional parameter (unused).</Param>
-		/// <Param name="culture">The culture to use in the converter (unused).</Param>
+		/// <param name="value">
+		/// \if KO
+		/// <para>대상 값입니다.</para>
+		/// \endif
+		/// \if EN
+		/// <para>The target value.</para>
+		/// \endif
+		/// </param>
+		/// <param name="targetType">
+		/// \if KO
+		/// <para>원본 형식입니다.</para>
+		/// \endif
+		/// \if EN
+		/// <para>The source type.</para>
+		/// \endif
+		/// </param>
+		/// <param name="parameter">
+		/// \if KO
+		/// <para>변환기 매개변수입니다.</para>
+		/// \endif
+		/// \if EN
+		/// <para>The converter parameter.</para>
+		/// \endif
+		/// </param>
+		/// <param name="culture">
+		/// \if KO
+		/// <para>변환 문화권입니다.</para>
+		/// \endif
+		/// \if EN
+		/// <para>The conversion culture.</para>
+		/// \endif
+		/// </param>
+		/// <returns>
+		/// \if KO
+		/// <para>정상적으로 반환되지 않습니다.</para>
+		/// \endif
+		/// \if EN
+		/// <para>This method does not return normally.</para>
+		/// \endif
+		/// </returns>
 		/// <exception cref="NotImplementedException">
-		/// Always thrown because reverse conversion is not supported.
+		/// \if KO
+		/// <para>호출할 때 항상 발생합니다.</para>
+		/// \endif
+		/// \if EN
+		/// <para>Always thrown when called.</para>
+		/// \endif
 		/// </exception>
 		public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
 		{

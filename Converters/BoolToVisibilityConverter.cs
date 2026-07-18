@@ -7,50 +7,91 @@ using System.Windows.Data;
 namespace Dreamine.UI.Wpf.Converters
 {
 	/// <summary>
-	/// \brief Converts between <see cref="bool"/> and <see cref="Visibility"/> with optional inversion and Hidden support.
-	/// Details:
-	/// This converter is designed to be compatible with common "BoolToVisibilityConverter" variants used in projects.
-	/// It supports:
-	/// - Inverse conversion (true->Collapsed/Hidden, false->Visible)
-	/// - Hidden instead of Collapsed when false
-	/// - ConvertBack (Visibility -> bool)
-	///
-	/// Usage patterns:
-	/// 1) Property-based options:
-	///    <code>
-	///    &lt;converters:BoolToVisibilityConverter Inverse="True" UseHidden="True"/&gt;
-	///    </code>
-	/// 2) Parameter-based options:
-	///    <code>
-	///    Visibility="{Binding IsOn, Converter={StaticResource BoolToVis}, ConverterParameter=Inverse}"
-	///    Visibility="{Binding IsOn, Converter={StaticResource BoolToVis}, ConverterParameter=Hidden}"
-	///    Visibility="{Binding IsOn, Converter={StaticResource BoolToVis}, ConverterParameter=Inverse,Hidden}"
-	///    </code>
+	/// \if KO
+	/// <para>부울 의미의 값과 WPF <see cref="Visibility"/> 값을 양방향 변환하며 반전 및 Hidden 옵션을 지원합니다.</para>
+	/// \endif
+	/// \if EN
+	/// <para>Converts Boolean-like values to and from WPF <see cref="Visibility"/> values with inversion and Hidden options.</para>
+	/// \endif
 	/// </summary>
+	/// <remarks>
+	/// \if KO
+	/// <para>변환기 속성 또는 "Inverse", "Hidden", "UseHidden", "Collapsed" 토큰을 포함하는 매개변수로 동작을 구성할 수 있습니다.</para>
+	/// \endif
+	/// \if EN
+	/// <para>Behavior can be configured through converter properties or parameter tokens including "Inverse", "Hidden", "UseHidden", and "Collapsed".</para>
+	/// \endif
+	/// </remarks>
 	public sealed class BoolToVisibilityConverter : IValueConverter
 	{
 		/// <summary>
-		/// \brief When true, inverts the meaning of the boolean value.
-		/// Details:
-		/// If <see cref="Inverse"/> is true:
-		/// - true  -> falseVisibility (Collapsed/Hidden)
-		/// - false -> Visible
+		/// \if KO
+		/// <para>부울 의미를 반전할지 여부를 가져오거나 설정합니다.</para>
+		/// \endif
+		/// \if EN
+		/// <para>Gets or sets whether the Boolean meaning is inverted.</para>
+		/// \endif
 		/// </summary>
 		public bool Inverse { get; set; } = false;
 
 		/// <summary>
-		/// \brief When true, returns <see cref="Visibility.Hidden"/> instead of <see cref="Visibility.Collapsed"/> for false.
+		/// \if KO
+		/// <para>거짓 상태에서 <see cref="Visibility.Collapsed"/> 대신 <see cref="Visibility.Hidden"/>을 반환할지 여부를 가져오거나 설정합니다.</para>
+		/// \endif
+		/// \if EN
+		/// <para>Gets or sets whether false returns <see cref="Visibility.Hidden"/> instead of <see cref="Visibility.Collapsed"/>.</para>
+		/// \endif
 		/// </summary>
 		public bool UseHidden { get; set; } = false;
 
 		/// <summary>
-		/// \brief Converts a boolean value to <see cref="Visibility"/>.
-		/// \param value The source value from the binding (expected: bool or nullable bool).
-		/// \param targetType The target type (expected: <see cref="Visibility"/>).
-		/// \param parameter Optional parameter to override behavior (e.g., "Inverse", "Hidden", "Inverse,Hidden").
-		/// \param culture The culture used in conversion.
-		/// \return <see cref="Visibility.Visible"/> when true; otherwise <see cref="Visibility.Collapsed"/> or <see cref="Visibility.Hidden"/>.
+		/// \if KO
+		/// <para>원본 값을 안전하게 부울로 해석하여 구성된 가시성 상태로 변환합니다.</para>
+		/// \endif
+		/// \if EN
+		/// <para>Safely interprets the source as a Boolean and converts it to the configured visibility state.</para>
+		/// \endif
 		/// </summary>
+		/// <param name="value">
+		/// \if KO
+		/// <para>부울로 해석할 원본 값입니다.</para>
+		/// \endif
+		/// \if EN
+		/// <para>The source value to interpret as Boolean.</para>
+		/// \endif
+		/// </param>
+		/// <param name="targetType">
+		/// \if KO
+		/// <para>대상 형식입니다.</para>
+		/// \endif
+		/// \if EN
+		/// <para>The target type.</para>
+		/// \endif
+		/// </param>
+		/// <param name="parameter">
+		/// \if KO
+		/// <para>선택적 반전·숨김 옵션입니다.</para>
+		/// \endif
+		/// \if EN
+		/// <para>Optional inversion and hiding options.</para>
+		/// \endif
+		/// </param>
+		/// <param name="culture">
+		/// \if KO
+		/// <para>사용하지 않는 문화권입니다.</para>
+		/// \endif
+		/// \if EN
+		/// <para>An unused culture.</para>
+		/// \endif
+		/// </param>
+		/// <returns>
+		/// \if KO
+		/// <para><see cref="Visibility.Visible"/>, <see cref="Visibility.Hidden"/> 또는 <see cref="Visibility.Collapsed"/>입니다.</para>
+		/// \endif
+		/// \if EN
+		/// <para><see cref="Visibility.Visible"/>, <see cref="Visibility.Hidden"/>, or <see cref="Visibility.Collapsed"/>.</para>
+		/// \endif
+		/// </returns>
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
 			// \brief Read options from instance properties first.
@@ -72,15 +113,53 @@ namespace Dreamine.UI.Wpf.Converters
 		}
 
 		/// <summary>
-		/// \brief Converts <see cref="Visibility"/> back to a boolean value.
-		/// Details:
-		/// Visible -> true, otherwise false. Applies <see cref="Inverse"/> and optional parameter override.
-		/// \param value The value from the target (expected: <see cref="Visibility"/>).
-		/// \param targetType The target type (expected: bool).
-		/// \param parameter Optional parameter to override behavior (e.g., "Inverse").
-		/// \param culture The culture used in conversion.
-		/// \return Boolean representation of the visibility state.
+		/// \if KO
+		/// <para>가시성 값이 보임 상태인지 확인하고 선택적으로 결과를 반전합니다.</para>
+		/// \endif
+		/// \if EN
+		/// <para>Determines whether a visibility value is visible and optionally inverts the result.</para>
+		/// \endif
 		/// </summary>
+		/// <param name="value">
+		/// \if KO
+		/// <para>대상 가시성 값입니다.</para>
+		/// \endif
+		/// \if EN
+		/// <para>The target visibility value.</para>
+		/// \endif
+		/// </param>
+		/// <param name="targetType">
+		/// \if KO
+		/// <para>원본 형식입니다.</para>
+		/// \endif
+		/// \if EN
+		/// <para>The source type.</para>
+		/// \endif
+		/// </param>
+		/// <param name="parameter">
+		/// \if KO
+		/// <para>선택적 반전 옵션입니다.</para>
+		/// \endif
+		/// \if EN
+		/// <para>Optional inversion options.</para>
+		/// \endif
+		/// </param>
+		/// <param name="culture">
+		/// \if KO
+		/// <para>사용하지 않는 문화권입니다.</para>
+		/// \endif
+		/// \if EN
+		/// <para>An unused culture.</para>
+		/// \endif
+		/// </param>
+		/// <returns>
+		/// \if KO
+		/// <para>보임 상태의 부울 표현이며 구성에 따라 반전됩니다.</para>
+		/// \endif
+		/// \if EN
+		/// <para>The Boolean representation of visible state, optionally inverted.</para>
+		/// \endif
+		/// </returns>
 		public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
 		{
 			bool inverse = Inverse;
@@ -94,13 +173,29 @@ namespace Dreamine.UI.Wpf.Converters
 		}
 
 		/// <summary>
-		/// \brief Safely converts various input types to bool.
-		/// Details:
-		/// Supports: bool, bool?, string ("true"/"false"), numeric (0/1), null -> false.
-		/// This implementation avoids nullable pattern matching issues (CS8116).
-		/// <param name="value">Input value.</param>
-		/// <returns>Normalized boolean value.</returns>
+		/// \if KO
+		/// <para>부울, 문자열, 정수 계열 입력을 안전하게 부울 값으로 정규화합니다.</para>
+		/// \endif
+		/// \if EN
+		/// <para>Safely normalizes Boolean, string, and integral inputs to a Boolean value.</para>
+		/// \endif
 		/// </summary>
+		/// <param name="value">
+		/// \if KO
+		/// <para>정규화할 값입니다.</para>
+		/// \endif
+		/// \if EN
+		/// <para>The value to normalize.</para>
+		/// \endif
+		/// </param>
+		/// <returns>
+		/// \if KO
+		/// <para>해석된 논리값이며 해석할 수 없으면 <see langword="false"/>입니다.</para>
+		/// \endif
+		/// \if EN
+		/// <para>The interpreted logical value, or <see langword="false"/> when conversion fails.</para>
+		/// \endif
+		/// </returns>
 		private static bool ToBoolSafe(object? value)
 		{
 			if (value == null)
@@ -143,16 +238,37 @@ namespace Dreamine.UI.Wpf.Converters
 
 
 		/// <summary>
-		/// \brief Applies converter options from the ConverterParameter.
-		/// Details:
-		/// Supported parameter forms:
-		/// - string: "Inverse", "Hidden", "UseHidden", "Inverse,Hidden"
-		/// - bool: treated as Inverse override
-		/// - Visibility.Hidden: treated as UseHidden=true
-		/// \param parameter ConverterParameter object.
-		/// \param inverse Inverse option (by ref).
-		/// \param useHidden UseHidden option (by ref).
+		/// \if KO
+		/// <para>변환기 매개변수의 부울, 가시성 또는 문자열 토큰을 반전·숨김 옵션에 적용합니다.</para>
+		/// \endif
+		/// \if EN
+		/// <para>Applies Boolean, visibility, or string tokens from the converter parameter to inversion and hiding options.</para>
+		/// \endif
 		/// </summary>
+		/// <param name="parameter">
+		/// \if KO
+		/// <para>해석할 변환기 매개변수입니다.</para>
+		/// \endif
+		/// \if EN
+		/// <para>The converter parameter to parse.</para>
+		/// \endif
+		/// </param>
+		/// <param name="inverse">
+		/// \if KO
+		/// <para>갱신할 반전 옵션입니다.</para>
+		/// \endif
+		/// \if EN
+		/// <para>The inversion option to update.</para>
+		/// \endif
+		/// </param>
+		/// <param name="useHidden">
+		/// \if KO
+		/// <para>갱신할 Hidden 사용 옵션입니다.</para>
+		/// \endif
+		/// \if EN
+		/// <para>The Hidden-state option to update.</para>
+		/// \endif
+		/// </param>
 		private static void ApplyOptionsFromParameter(object parameter, ref bool inverse, ref bool useHidden)
 		{
 			if (parameter == null)

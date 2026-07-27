@@ -682,7 +682,12 @@ public static class DreamineLocalization
     private static string NormalizeNewlines(string s)
     {
         if (string.IsNullOrEmpty(s)) return s;
-        s = Regex.Replace(s, @"<br\s*/?>", "\n", RegexOptions.IgnoreCase);
+        s = Regex.Replace(
+            s,
+            @"<br\s*/?>",
+            "\n",
+            RegexOptions.IgnoreCase,
+            TimeSpan.FromMilliseconds(250));
         s = s.Replace(@"\r\n", "\n").Replace(@"\n", "\n").Replace("\r\n", "\n");
         return s.Replace("\n", Environment.NewLine);
     }

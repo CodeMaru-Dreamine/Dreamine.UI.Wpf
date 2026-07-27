@@ -66,7 +66,7 @@ public class UppercaseConverter : IValueConverter
         if (value == null)
             return string.Empty;
 
-        return value ?? value?.ToString()!.ToUpperInvariant() ?? string.Empty;
+        return value.ToString()?.ToUpperInvariant() ?? string.Empty;
     }
 
     /// <summary>

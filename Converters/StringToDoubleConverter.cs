@@ -4,42 +4,92 @@ using System.Windows.Data;
 namespace Dreamine.UI.Wpf.Converters
 {
 	/// <summary>
-	/// @brief A simple converter that transforms a <c>string</c> to a <c>double</c> and vice versa.
-	/// @details
-	/// - <b>Convert:</b> string → double<br/>
-	/// - <b>ConvertBack:</b> double → string (supports custom formatting)<br/>
-	/// - By default, parsing uses <see cref="CultureInfo.InvariantCulture"/>. 
-	///   Set <see cref="UseInvariantCulture"/> to false to use the binding's provided culture.
+	/// \if KO
+	/// <para>문자열과 <see cref="double"/> 값 사이를 선택한 문화권과 형식으로 양방향 변환합니다.</para>
+	/// \endif
+	/// \if EN
+	/// <para>Converts between strings and <see cref="double"/> values using a selected culture and format.</para>
+	/// \endif
 	/// </summary>
 	public sealed class StringToDoubleConverter : IValueConverter
 	{
 		/// <summary>
-		/// The value to return when parsing fails.
+		/// \if KO
+		/// <para>숫자 해석에 실패할 때 반환할 값을 가져오거나 설정합니다.</para>
+		/// \endif
+		/// \if EN
+		/// <para>Gets or sets the value returned when numeric parsing fails.</para>
+		/// \endif
 		/// </summary>
 		public double Fallback { get; set; } = 0.0;
 
 		/// <summary>
-		/// The format string to use when converting a double to string in <see cref="ConvertBack"/>.
-		/// If empty or null, "G" (general format) is used.
-		/// Examples: "0.###", "0.000"
+		/// \if KO
+		/// <para>역변환 문자열에 사용할 선택적 숫자 형식을 가져오거나 설정합니다.</para>
+		/// \endif
+		/// \if EN
+		/// <para>Gets or sets the optional numeric format used for reverse-conversion text.</para>
+		/// \endif
 		/// </summary>
 		public string? Format { get; set; }
 
 		/// <summary>
-		/// Determines whether to always use <see cref="CultureInfo.InvariantCulture"/>.
-		/// If true, a '.' is always used as the decimal separator.
+		/// \if KO
+		/// <para>바인딩 문화권 대신 불변 문화권을 사용할지 여부를 가져오거나 설정합니다.</para>
+		/// \endif
+		/// \if EN
+		/// <para>Gets or sets whether invariant culture is used instead of the binding culture.</para>
+		/// \endif
 		/// </summary>
 		public bool UseInvariantCulture { get; set; } = true;
 
 		/// <summary>
-		/// Converts a string to a <c>double</c>.
+		/// \if KO
+		/// <para>문자열 또는 변환 가능한 원본 값을 실수로 변환합니다.</para>
+		/// \endif
+		/// \if EN
+		/// <para>Converts text or another convertible source value to a floating-point number.</para>
+		/// \endif
 		/// </summary>
-		/// <Param name="value">The input string value.</Param>
-		/// <Param name="targetType">The target type (ignored).</Param>
-		/// <Param name="parameter">Optional parameter (unused).</Param>
-		/// <Param name="culture">The culture provided by the binding.</Param>
+		/// <param name="value">
+		/// \if KO
+		/// <para>변환할 원본 값입니다.</para>
+		/// \endif
+		/// \if EN
+		/// <para>The source value to convert.</para>
+		/// \endif
+		/// </param>
+		/// <param name="targetType">
+		/// \if KO
+		/// <para>대상 형식입니다.</para>
+		/// \endif
+		/// \if EN
+		/// <para>The target type.</para>
+		/// \endif
+		/// </param>
+		/// <param name="parameter">
+		/// \if KO
+		/// <para>사용하지 않는 매개변수입니다.</para>
+		/// \endif
+		/// \if EN
+		/// <para>An unused parameter.</para>
+		/// \endif
+		/// </param>
+		/// <param name="culture">
+		/// \if KO
+		/// <para>불변 문화권을 사용하지 않을 때의 변환 문화권입니다.</para>
+		/// \endif
+		/// \if EN
+		/// <para>The conversion culture used when invariant culture is disabled.</para>
+		/// \endif
+		/// </param>
 		/// <returns>
-		/// The parsed double value, or <see cref="Fallback"/> if parsing fails.
+		/// \if KO
+		/// <para>해석된 실수이며 실패하면 <see cref="Fallback"/>입니다.</para>
+		/// \endif
+		/// \if EN
+		/// <para>The parsed value, or <see cref="Fallback"/> on failure.</para>
+		/// \endif
 		/// </returns>
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
@@ -64,15 +114,61 @@ namespace Dreamine.UI.Wpf.Converters
 		}
 
 		/// <summary>
-		/// Converts a <c>double</c> to a formatted string.
+		/// \if KO
+		/// <para>대상 숫자 값을 구성된 형식의 문자열로 변환합니다.</para>
+		/// \endif
+		/// \if EN
+		/// <para>Converts a target numeric value to text using the configured format.</para>
+		/// \endif
 		/// </summary>
-		/// <Param name="value">The double value to convert.</Param>
-		/// <Param name="targetType">The target type (ignored).</Param>
-		/// <Param name="parameter">Optional parameter (unused).</Param>
-		/// <Param name="culture">The culture provided by the binding.</Param>
+		/// <param name="value">
+		/// \if KO
+		/// <para>형식화할 대상 값입니다.</para>
+		/// \endif
+		/// \if EN
+		/// <para>The target value to format.</para>
+		/// \endif
+		/// </param>
+		/// <param name="targetType">
+		/// \if KO
+		/// <para>원본 형식입니다.</para>
+		/// \endif
+		/// \if EN
+		/// <para>The source type.</para>
+		/// \endif
+		/// </param>
+		/// <param name="parameter">
+		/// \if KO
+		/// <para>사용하지 않는 매개변수입니다.</para>
+		/// \endif
+		/// \if EN
+		/// <para>An unused parameter.</para>
+		/// \endif
+		/// </param>
+		/// <param name="culture">
+		/// \if KO
+		/// <para>불변 문화권을 사용하지 않을 때의 변환 문화권입니다.</para>
+		/// \endif
+		/// \if EN
+		/// <para>The conversion culture used when invariant culture is disabled.</para>
+		/// \endif
+		/// </param>
 		/// <returns>
-		/// The formatted string representation of the double value.
+		/// \if KO
+		/// <para>형식화된 숫자 문자열입니다.</para>
+		/// \endif
+		/// \if EN
+		/// <para>The formatted numeric text.</para>
+		/// \endif
 		/// </returns>
+		/// <exception cref="FormatException">
+		/// \if KO
+		/// <para><see cref="Format"/>이 유효한 숫자 형식이 아니면 발생합니다.</para>
+		/// \endif
+		/// \if EN
+		/// <para>Thrown when <see cref="Format"/> is not a valid numeric format.</para>
+		/// \endif
+		/// </exception>
 		public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
 		{
 			var ci = UseInvariantCulture ? CultureInfo.InvariantCulture : (culture ?? CultureInfo.CurrentCulture);

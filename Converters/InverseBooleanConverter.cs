@@ -4,23 +4,62 @@ using System.Windows.Data;
 namespace Dreamine.UI.Wpf.Converters
 {
 	/// <summary>
-	/// Converts boolean or long values by inverting the logical State.
-	/// - For <see cref="bool"/>: returns the negated value.
-	/// - For <see cref="long"/>: returns true if 0, false otherwise.
+	/// \if KO
+	/// <para>부울 또는 64비트 정수의 논리 상태를 반전합니다.</para>
+	/// \endif
+	/// \if EN
+	/// <para>Inverts the logical state represented by Boolean or 64-bit integer values.</para>
+	/// \endif
 	/// </summary>
 	public class InverseBooleanConverter : IValueConverter
 	{
 		/// <summary>
-		/// Converts a <see cref="bool"/> or <see cref="long"/> value to its inverse representation.
+		/// \if KO
+		/// <para>부울은 반전하고 64비트 정수는 0인지 여부를 반환합니다.</para>
+		/// \endif
+		/// \if EN
+		/// <para>Negates Boolean input and tests 64-bit integer input for zero.</para>
+		/// \endif
 		/// </summary>
-		/// <Param name="value">The value to convert. Accepts <see cref="bool"/> or <see cref="long"/> types.</Param>
-		/// <Param name="targetType">The target type of the binding (unused).</Param>
-		/// <Param name="parameter">Optional parameter (unused).</Param>
-		/// <Param name="culture">Culture information (unused).</Param>
+		/// <param name="value">
+		/// \if KO
+		/// <para>원본 부울 또는 64비트 정수입니다.</para>
+		/// \endif
+		/// \if EN
+		/// <para>The source Boolean or 64-bit integer.</para>
+		/// \endif
+		/// </param>
+		/// <param name="targetType">
+		/// \if KO
+		/// <para>대상 형식입니다.</para>
+		/// \endif
+		/// \if EN
+		/// <para>The target type.</para>
+		/// \endif
+		/// </param>
+		/// <param name="parameter">
+		/// \if KO
+		/// <para>사용하지 않는 매개변수입니다.</para>
+		/// \endif
+		/// \if EN
+		/// <para>An unused parameter.</para>
+		/// \endif
+		/// </param>
+		/// <param name="culture">
+		/// \if KO
+		/// <para>사용하지 않는 문화권입니다.</para>
+		/// \endif
+		/// \if EN
+		/// <para>An unused culture.</para>
+		/// \endif
+		/// </param>
 		/// <returns>
-		/// - If input is <see cref="long"/>: returns <c>true</c> if 0, otherwise <c>false</c>.<br/>
-		/// - If input is <see cref="bool"/>: returns <c>!value</c>.<br/>
-		/// - Otherwise: returns <c>false</c>.
+		/// \if KO
+		/// <para>반전된 논리 상태이며 지원하지 않는 입력은 거짓입니다.</para>
+		/// \endif
+		/// \if EN
+		/// <para>The inverted logical state, or false for unsupported input.</para>
+		/// \endif
 		/// </returns>
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
@@ -37,17 +76,61 @@ namespace Dreamine.UI.Wpf.Converters
 		}
 
 		/// <summary>
-		/// Converts a value back to its logical inverse, or to a numeric representation if targetType is numeric.
+		/// \if KO
+		/// <para>부울 값을 반전하거나 숫자 원본 형식에 대해 0 또는 1의 64비트 정수를 반환합니다.</para>
+		/// \endif
+		/// \if EN
+		/// <para>Negates a Boolean value or returns a 64-bit zero-or-one value for numeric source types.</para>
+		/// \endif
 		/// </summary>
-		/// <Param name="value">The value to convert back. Expected to be a <see cref="bool"/>.</Param>
-		/// <Param name="targetType">The target type (e.g., <see cref="long"/>, <see cref="int"/>, or <see cref="bool"/>).</Param>
-		/// <Param name="parameter">Optional parameter (unused).</Param>
-		/// <Param name="culture">Culture information (unused).</Param>
+		/// <param name="value">
+		/// \if KO
+		/// <para>대상 부울 값입니다.</para>
+		/// \endif
+		/// \if EN
+		/// <para>The target Boolean value.</para>
+		/// \endif
+		/// </param>
+		/// <param name="targetType">
+		/// \if KO
+		/// <para>원본 형식입니다.</para>
+		/// \endif
+		/// \if EN
+		/// <para>The source type.</para>
+		/// \endif
+		/// </param>
+		/// <param name="parameter">
+		/// \if KO
+		/// <para>사용하지 않는 매개변수입니다.</para>
+		/// \endif
+		/// \if EN
+		/// <para>An unused parameter.</para>
+		/// \endif
+		/// </param>
+		/// <param name="culture">
+		/// \if KO
+		/// <para>사용하지 않는 문화권입니다.</para>
+		/// \endif
+		/// \if EN
+		/// <para>An unused culture.</para>
+		/// \endif
+		/// </param>
 		/// <returns>
-		/// - If targetType is numeric: returns 0 if value is <c>true</c>, 1 otherwise.<br/>
-		/// - If targetType is <see cref="bool"/>: returns logical inverse.<br/>
-		/// - Otherwise: returns 0.
+		/// \if KO
+		/// <para>반전된 부울 또는 0/1 정수입니다.</para>
+		/// \endif
+		/// \if EN
+		/// <para>The negated Boolean or a zero/one integer.</para>
+		/// \endif
 		/// </returns>
+		/// <exception cref="InvalidCastException">
+		/// \if KO
+		/// <para>숫자 원본 형식인데 <paramref name="value"/>가 부울이 아니면 발생합니다.</para>
+		/// \endif
+		/// \if EN
+		/// <para>Thrown when the source type is numeric but <paramref name="value"/> is not Boolean.</para>
+		/// \endif
+		/// </exception>
 		public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
 		{
 			if (value is bool booleanValue)

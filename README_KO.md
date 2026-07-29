@@ -8,6 +8,21 @@
 
 # Dreamine.UI.Wpf
 
+[![CI](https://github.com/CodeMaru-Dreamine/Dreamine.UI.Wpf/actions/workflows/ci.yml/badge.svg)](https://github.com/CodeMaru-Dreamine/Dreamine.UI.Wpf/actions/workflows/ci.yml)
+[![품질 게이트](https://sonarcloud.io/api/project_badges/measure?project=CodeMaru-Dreamine_Dreamine.UI.Wpf&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=CodeMaru-Dreamine_Dreamine.UI.Wpf)
+[![보안 등급](https://sonarcloud.io/api/project_badges/measure?project=CodeMaru-Dreamine_Dreamine.UI.Wpf&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=CodeMaru-Dreamine_Dreamine.UI.Wpf)
+[![커버리지](https://sonarcloud.io/api/project_badges/measure?project=CodeMaru-Dreamine_Dreamine.UI.Wpf&metric=coverage)](https://sonarcloud.io/summary/new_code?id=CodeMaru-Dreamine_Dreamine.UI.Wpf)
+[![라이선스](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![.NET](https://img.shields.io/badge/.NET-8-512BD4.svg)](https://dotnet.microsoft.com/)
+[![WPF](https://img.shields.io/badge/WPF-0078D7.svg)](https://learn.microsoft.com/dotnet/desktop/wpf/)
+[![Visual Studio](https://img.shields.io/badge/Visual%20Studio-2022%20%7C%202026-5C2D91.svg)](https://visualstudio.microsoft.com/)
+[![NuGet](https://img.shields.io/nuget/v/Dreamine.UI.Wpf.svg)](https://www.nuget.org/packages/Dreamine.UI.Wpf)
+[![다운로드](https://img.shields.io/nuget/dt/Dreamine.UI.Wpf.svg)](https://www.nuget.org/packages/Dreamine.UI.Wpf)
+[![문서](https://img.shields.io/badge/%EB%AC%B8%EC%84%9C-dreamine.kr-38BDF8.svg)](https://dreamine.kr)
+[![가이드](https://img.shields.io/badge/%EA%B0%80%EC%9D%B4%EB%93%9C-dreamine.kr-0EA5E9.svg)](https://dreamine.kr)
+[![플레이그라운드](https://img.shields.io/badge/%ED%94%8C%EB%A0%88%EC%9D%B4%EA%B7%B8%EB%9D%BC%EC%9A%B4%EB%93%9C-dreamine.kr-7C3AED.svg)](https://dreamine.kr)
+[![책](https://img.shields.io/badge/%EC%B1%85-Practical%20MVVM%20Architecture-111827.svg)](https://dreamine.kr)
+
 **Dreamine.UI.Wpf**는 Dreamine UI 스택의 WPF 기반 레이어입니다.
 
 상위 모든 Dreamine UI 패키지가 공유하는 유틸리티를 제공합니다.
@@ -17,7 +32,7 @@
 - 지역화 인프라
 - LED 컨트롤 기본 프리미티브
 
-[➡️ English Documentation](./README.md)
+[➡️ 영어 문서 보기](./README.md)
 
 ---
 

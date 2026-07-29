@@ -8,6 +8,21 @@
 
 # Dreamine.UI.Wpf
 
+[![CI](https://github.com/CodeMaru-Dreamine/Dreamine.UI.Wpf/actions/workflows/ci.yml/badge.svg)](https://github.com/CodeMaru-Dreamine/Dreamine.UI.Wpf/actions/workflows/ci.yml)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=CodeMaru-Dreamine_Dreamine.UI.Wpf&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=CodeMaru-Dreamine_Dreamine.UI.Wpf)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=CodeMaru-Dreamine_Dreamine.UI.Wpf&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=CodeMaru-Dreamine_Dreamine.UI.Wpf)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=CodeMaru-Dreamine_Dreamine.UI.Wpf&metric=coverage)](https://sonarcloud.io/summary/new_code?id=CodeMaru-Dreamine_Dreamine.UI.Wpf)
+[![license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![.NET](https://img.shields.io/badge/.NET-8-512BD4.svg)](https://dotnet.microsoft.com/)
+[![WPF](https://img.shields.io/badge/WPF-0078D7.svg)](https://learn.microsoft.com/dotnet/desktop/wpf/)
+[![Visual Studio](https://img.shields.io/badge/Visual%20Studio-2022%20%7C%202026-5C2D91.svg)](https://visualstudio.microsoft.com/)
+[![nuget](https://img.shields.io/nuget/v/Dreamine.UI.Wpf.svg)](https://www.nuget.org/packages/Dreamine.UI.Wpf)
+[![downloads](https://img.shields.io/nuget/dt/Dreamine.UI.Wpf.svg)](https://www.nuget.org/packages/Dreamine.UI.Wpf)
+[![Docs](https://img.shields.io/badge/Docs-dreamine.kr-38BDF8.svg)](https://dreamine.kr)
+[![Guide](https://img.shields.io/badge/Guide-dreamine.kr-0EA5E9.svg)](https://dreamine.kr)
+[![Playground](https://img.shields.io/badge/Playground-dreamine.kr-7C3AED.svg)](https://dreamine.kr)
+[![Book](https://img.shields.io/badge/Book-Practical%20MVVM%20Architecture-111827.svg)](https://dreamine.kr)
+
 **Dreamine.UI.Wpf** is the WPF foundation layer of the Dreamine UI stack.
 
 It provides shared utilities consumed by all higher-level Dreamine UI packages:
